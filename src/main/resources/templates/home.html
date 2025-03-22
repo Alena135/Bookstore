@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Bookstore Home</title>
+</head>
+<body>
+<h2>Bookstore Inventory Management System</h2>
+
+<div>
+  <p>Welcome <span th:text="${username}">User</span>!</p>
+
+  <div th:if="${isAdmin}">
+    <h3>Admin Dashboard</h3>
+    <ul>
+      <li><a th:href="@{/books}">View All Books</a></li>
+      <li><a th:href="@{/books/create}">Add New Book</a></li>
+      <li><a th:href="@{/books/management}">Manage Books</a></li>
+    </ul>
+  </div>
+
+  <div th:unless="${isAdmin}">
+    <h3>User Dashboard</h3>
+    <ul>
+      <li><a th:href="@{/books}">View Books</a></li>
+    </ul>
+  </div>
+</div>
+
+<form th:action="@{/logout}" method="post">
+  <button type="submit">Logout</button>
+</form>
+</body>
+</html>

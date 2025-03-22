@@ -12,6 +12,8 @@ import java.util.*;
 @Table(name = "author")
 public class Author {
     @Id
+//    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "author_seq")
+//    @SequenceGenerator(name = "author_seq", sequenceName = "author_sequence", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "author_id", nullable = false)
     private Long id;

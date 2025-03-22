@@ -15,8 +15,10 @@ import java.util.Set;
 @Table(name = "book")
 public class Book {
     @Id
+//    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "book_seq")
+//    @SequenceGenerator(name = "book_seq", sequenceName = "book_sequence", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-        @Column(name = "book_id", nullable = false)
+    @Column(name = "book_id", nullable = false)
     private Long id;
 
     @Column(name = "title")

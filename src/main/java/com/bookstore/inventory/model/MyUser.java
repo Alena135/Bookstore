@@ -12,7 +12,10 @@ import java.util.Objects;
 @Table(name = "my_user")
 public class MyUser {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_seq")
+//    @SequenceGenerator(name = "user_seq", sequenceName = "user_sequence", allocationSize = 1)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "user_id", nullable = false)
     private Long id;
 
@@ -22,10 +25,10 @@ public class MyUser {
     @Column(name = "password", nullable = false)
     private String password;
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "name"/*, nullable = false*/)
     private String name;
 
-    @Column(name = "surname", nullable = false)
+    @Column(name = "surname"/*, nullable = false*/)
     private String surname;
 
     @Enumerated(EnumType.STRING)
