@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Book List</title>
+</head>
+<body>
+<!-- list.html -->
+<h1>Book List</h1>
+<ul>
+    <!-- Loop through books -->
+    <li th:each="book : ${books}">
+        <span th:text="${book.title}"></span> - <span th:text="${book.price}"></span>
+        <a th:href="@{/books/{id}(id=${book.id})}">View Details</a>
+
+        <!-- Admin Actions -->
+        <a th:href="@{/books/{id}/edit(id=${book.id})}">Edit</a>
+        <form th:action="@{/books/{id}(id=${book.id})}" method="post" style="display:inline;">
+            <input type="hidden" name="_method" value="delete">
+            <button type="submit">Delete</button>
+        </form>
+    </li>
+</ul>
+</body>
+</html>
