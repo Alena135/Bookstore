@@ -3,6 +3,7 @@ package com.bookstore.inventory.config;
 import com.bookstore.inventory.service.CustomUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
@@ -29,7 +30,11 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/login", "/register", "/css/**", "/js/**").permitAll() // Public resources
                         .requestMatchers("/books").hasAnyRole("USER", "ADMIN") // Both roles can view books
+                        .requestMatchers("/books/search").hasAnyRole("USER", "ADMIN") // Allow search for both roles
                         .requestMatchers("/books/create", "/books/*/edit", "/books/*/delete").hasRole("ADMIN") // Only admin can modify
+//                        .requestMatchers(HttpMethod.POST, "/books").hasRole("ADMIN") // Only admin can create
+                        .requestMatchers(HttpMethod.PUT, "/books/**").hasRole("ADMIN") // Only admin can update
+                        .requestMatchers(HttpMethod.DELETE, "/books/**").hasRole("ADMIN") // Only admin can delete
                         .anyRequest().authenticated() // Any other request needs authentication
                 )
                 .formLogin(form -> form

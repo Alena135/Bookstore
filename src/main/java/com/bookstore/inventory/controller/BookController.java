@@ -1,6 +1,7 @@
 package com.bookstore.inventory.controller;
 
 import com.bookstore.inventory.model.Book;
+import com.bookstore.inventory.model.PagedResponse;
 import com.bookstore.inventory.service.BookService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -43,18 +44,18 @@ public class BookController {
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping("/search-by-title/{title}")
-    public ResponseEntity<List<Book>> getBooksByTitle(@PathVariable String title) {
-        return ResponseEntity.ok(bookService.searchBooksByTitle(title));
-    }
+    @GetMapping("/search")
+    public ResponseEntity<PagedResponse<Book>> searchBooks(
+            @RequestParam(required = false) String query,
+            @RequestParam String searchBy,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size,
+            @RequestParam(defaultValue = "title") String sortBy,
+            @RequestParam(defaultValue = "ASC") String direction) {
 
-    @GetMapping("/search-by-author/{authorId}")
-    public ResponseEntity<List<Book>> getBooksByAuthor(@PathVariable Long authorId) {
-        return ResponseEntity.ok(bookService.searchBooksByAuthor(authorId));
-    }
+        PagedResponse<Book> response = bookService.searchBooks(
+                query, searchBy, page, size, sortBy, direction);
 
-    @GetMapping("/search-by-genre/{genreName}")
-    public ResponseEntity<List<Book>> getBooksByGenre(@PathVariable String genreName) {
-        return ResponseEntity.ok(bookService.searchBooksByGenre(genreName));
+        return ResponseEntity.ok(response);
     }
 }

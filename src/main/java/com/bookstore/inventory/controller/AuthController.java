@@ -8,8 +8,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
 import org.springframework.security.core.Authentication;
 
-import java.util.Optional;
-
 @Controller
 public class AuthController {
 
@@ -60,6 +58,11 @@ public class AuthController {
         model.addAttribute("username", authentication.getName());
 
         return "home";
+    }
+
+    @GetMapping("/booksPage")
+    public String booksPage() {
+        return "list";
     }
 
 }
