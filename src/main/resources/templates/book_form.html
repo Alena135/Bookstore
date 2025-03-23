@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Create or Edit Book</title>
+</head>
+<body>
+<h2 th:if="${book == null}">Create a New Book</h2>
+<h2 th:if="${book != null}">Edit Book</h2>
+
+<form id="bookForm">
+  <label for="title">Book Title:</label>
+  <input type="text" id="title" name="title" th:value="${book?.title}" required><br><br>
+
+  <label for="price">Price:</label>
+  <input type="number" id="price" name="price" step="0.01" th:value="${book?.price}" required><br><br>
+
+  <label for="authorName">Author Name:</label>
+  <input type="text" id="authorName" name="authorName" th:value="${book?.author?.name}" required><br><br>
+
+  <label for="authorSurname">Author Surname:</label>
+  <input type="text" id="authorSurname" name="authorSurname" th:value="${book?.author?.surname}" required><br><br>
+
+  <label for="genres">Genres (comma-separated):</label>
+  <input type="text" id="genres" name="genres" th:value="${book?.genres != null ? #strings.listJoin(book.genres.![name], ',') : ''}"><br><br>
+
+  <button type="button" onclick="submitBook()">Save Book</button>
+</form>
+
+<script>
+  async function submitBook() {
+    const title = document.getElementById("title").value;
+    const price = document.getElementById("price").value;
+    const authorName = document.getElementById("authorName").value;
+    const authorSurname = document.getElementById("authorSurname").value;
+    const genresInput = document.getElementById("genres").value;
+    const genres = genresInput.split(",").map(g => ({ name: g.trim() })).filter(g => g.name);
+
+    const bookData = {
+      title,
+      price,
+      author: { name: authorName, surname: authorSurname },
+      genres: genres
+    };
+
+    const isEditMode = window.location.pathname.includes("/edit");
+    const bookId = isEditMode ? window.location.pathname.split("/")[2] : null;
+    const url = isEditMode ? `/books/${bookId}` : "/books";
+    const method = isEditMode ? "PUT" : "POST";
+
+    try {
+      const response = await fetch(url, {
+        method: method,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(bookData)
+      });
+
+      if (response.ok) {
+        alert("Book saved successfully!");
+        window.location.href = `/books-web/view-all`;
+      } else {
+        alert("Failed to save the book.");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      alert("An error occurred while saving the book.");
+    }
+  }
+</script>
+
+</body>
+</html>
