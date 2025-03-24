@@ -52,10 +52,10 @@ public class BookController {
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping("/search")
+    @GetMapping("/search/{searchBy}/{query}")
     public ResponseEntity<PagedResponse<Book>> searchBooks(
-            @RequestParam(required = false) String query,
-            @RequestParam String searchBy,
+            @PathVariable String query,
+            @PathVariable String searchBy,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size,
             @RequestParam(defaultValue = "title") String sortBy,

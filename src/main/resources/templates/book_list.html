@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
   <title>Book List</title>
-  <script src="/js/book_delete.js" defer></script>
+  <script src="/js/buttons.js" defer></script>
   <script src="/js/search.js" defer></script>
 </head>
+
 <body>
 <h2>Book List</h2>
 
@@ -23,6 +25,7 @@
   <button onclick="searchBook()">Search</button>
 </div>
 
+<!-- Book table -->
 <table border="1">
   <thead>
   <tr>
@@ -32,21 +35,21 @@
     <th>Actions</th>
   </tr>
   </thead>
-  <tbody>
+  <tbody id="bookList">
   <tr th:each="book : ${books}">
     <td th:text="${book.title}">Title</td>
     <td th:text="${book.author.name + ' ' + book.author.surname}">Author</td>
     <td th:text="${book.price}">0.00</td>
     <td>
-      <a th:href="@{'/books-web/' + ${book.id}}">View</a> |
-      <a th:href="@{'/books-web/' + ${book.id} + '/edit'}">Edit</a>
+      <button th:onclick="|viewBook(${book.id})|">View</button>
+      <button th:onclick="|editBook(${book.id})|">Edit</button>
       <button th:onclick="|deleteBook(${book.id})|">Delete</button>
     </td>
   </tr>
   </tbody>
 </table>
 
-<a href="/books-web/create">Add New Book</a>
+<button th:onclick="|addNewBook()|">Add New Book</button>
 
 </body>
 </html>

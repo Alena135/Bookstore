@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Formula;
 
 import java.util.HashSet;
 import java.util.Objects;
@@ -26,6 +27,9 @@ public class Author {
 
     @Column(name = "surname")
     private String surname;
+
+    @Formula("concat(name, ' ', surname)")
+    private String fullName;
 
     @OneToMany(mappedBy = "author")
     @JsonIgnore
@@ -52,6 +56,7 @@ public class Author {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
+                ", fullname='" + fullName + '\'' +
                 '}';
     }
 }

@@ -2,21 +2,20 @@ async function searchBook() {
     try {
         // Get values from input fields
         const searchBy = document.getElementById("searchBy").value;
-        const query = document.getElementById("query").value;
+        const query = document.getElementById("query").value.trim();
 
         // Log the selected values for debugging
         console.log("Search parameters:", { searchBy, query });
 
-        // Build the URL with required parameters
-        let url = `/books/search?searchBy=${encodeURIComponent(searchBy)}`;
+        // Fallback if query is empty (you could also handle this differently)
+        const searchQuery = "all";
 
-        // Add the query parameter if it has a value
-        if (query && query.trim() !== '') {
-            url += `&query=${encodeURIComponent(query)}`;
-        }
+        // Build the URL with path parameters
+        // const url = `/books/search/${encodeURIComponent(searchBy)}/${encodeURIComponent(searchQuery)}`;
 
-        // Add default values for the other required parameters
-        url += '&page=0&size=10&sortBy=title&direction=ASC';
+        let url = query
+            ? `/books/search/${encodeURIComponent(searchBy)}/${encodeURIComponent(query)}`
+            : `/books/search/${encodeURIComponent(searchQuery)}/${encodeURIComponent(searchQuery)}`;
 
         console.log("Request URL:", url);
 
@@ -57,11 +56,12 @@ function displayResults(data) {
         data.content.forEach(book => {
             const bookRow = document.createElement('tr');
             bookRow.innerHTML = `
-                <td>${book.id || ''}</td>
                 <td>${book.title || ''}</td>
-                <td>${book.author || ''}</td>
-                <td>${book.genre || ''}</td>
+                <td>${book.author.name + ' ' + book.author.surname || ''}</td>
+                <td>${book.price || ''}</td>
                 <td>
+                   <button onclick="viewBook(${book.id})">View</button>
+                    <button onclick="editBook(${book.id})">Edit</button>
                     <button onclick="deleteBook(${book.id})">Delete</button>
                 </td>
             `;

@@ -117,8 +117,8 @@ public class BookService {
                     break;
                 case "author":
                     try {
-                        Long authorId = Long.parseLong(searchTerm);
-                        bookPage = bookRepository.findByAuthorId(authorId, pageable);
+//                        Long authorId = Long.parseLong(searchTerm);
+                        bookPage = bookRepository.findByAuthorFullName(searchTerm, pageable);
                     } catch (NumberFormatException e) {
                         // Handle case where searchTerm is not a valid author ID
                         bookPage = Page.empty(pageable);
@@ -127,8 +127,9 @@ public class BookService {
                 case "genre":
                     bookPage = bookRepository.findByGenres(searchTerm, pageable);
                     break;
+                case "all":
+                    bookPage = bookRepository.findAll(pageable);
                 default:
-                    // Default to search by title
                     bookPage = bookRepository.findAll(pageable);
             }
         }

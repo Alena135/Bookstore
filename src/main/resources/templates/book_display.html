@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Book Details</title>
-    <script src="/js/book_delete.js" defer></script>
+    <script src="/js/buttons.js" defer></script>
 </head>
 <body>
 <h2 th:text="${book.title}">Book Title</h2>
@@ -20,8 +20,8 @@
     <li th:each="genre : ${book.genres}" th:text="${genre.name}">Genre Name</li>
 </ul>
 
-<a href="/books-web/view-all">Back to Book List</a>
-<a th:href="@{'/books-web/' + ${book.id} + '/edit'}">Edit Book</a>
+<button th:onclick="|goBackToBookList()|">Back to Book List</button>
+<button th:onclick="|editBook(${book.id})|">Edit</button>
 <button th:onclick="|deleteBook(${book.id})|">Delete</button>
 
 </body>

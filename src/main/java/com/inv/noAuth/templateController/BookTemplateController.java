@@ -4,6 +4,10 @@ import com.inv.noAuth.exception.BookNotFoundException;
 import com.inv.noAuth.model.Book;
 import com.inv.noAuth.model.PagedResponse;
 import com.inv.noAuth.repository.BookRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -60,6 +64,6 @@ public class BookTemplateController {
         // Add initial attributes to the model (optional, depending on whether you want to pre-fill data)
         model.addAttribute("searchBy", "title");  // Default searchBy
         model.addAttribute("query", "");  // Default query is empty
-        return "book_search";  // Thymeleaf template for the search page
+        return "book_list";  // Thymeleaf template for the search page
     }
 }
