@@ -10,14 +10,16 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+/**
+ * Represents an author entity with a name, surname, and a list of books.
+ * Each author can have multiple {@link Book}s.
+ */
 @Getter
 @Setter
 @Entity
 @Table(name = "author")
 public class Author {
     @Id
-//    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "author_seq")
-//    @SequenceGenerator(name = "author_seq", sequenceName = "author_sequence", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "author_id", nullable = false)
     private Long id;

@@ -5,6 +5,12 @@ import lombok.Setter;
 
 import java.util.List;
 
+/**
+ * Represents a paginated response containing a list of items of type {@code T}.
+ * Includes information about the current page, total number of pages, and whether this is the last page.
+ *
+ * @param <T> the type of content in the paginated response
+ */
 @Getter
 @Setter
 public class PagedResponse<T> {

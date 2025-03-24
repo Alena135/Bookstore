@@ -9,14 +9,16 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+/**
+ * Represents a book entity with a title, price, author, and genres.
+ * It has a many-to-one relationship with {@link Author} and a many-to-many relationship with {@link Genre}.
+ */
 @Getter
 @Setter
 @Entity
 @Table(name = "book")
 public class Book {
     @Id
-//    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "book_seq")
-//    @SequenceGenerator(name = "book_seq", sequenceName = "book_sequence", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "book_id", nullable = false)
     private Long id;
@@ -79,5 +81,4 @@ public class Book {
                 ", price=" + price +
                 '}';
     }
-
 }

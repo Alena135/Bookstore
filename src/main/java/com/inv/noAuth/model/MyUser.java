@@ -6,6 +6,10 @@ import lombok.Setter;
 
 import java.util.Objects;
 
+/**
+ * Represents a user entity with a unique username, password, name, surname, and role.
+ * The user can have one of two roles: {@link Role#ROLE_ADMIN} or {@link Role#ROLE_USER}.
+ */
 @Getter
 @Setter
 @Entity

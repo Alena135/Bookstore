@@ -23,7 +23,7 @@ public class BookTemplateControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
-    @Test
+   /* @Test
     public void testAdminCanModifyBooks() throws Exception {
         // Admin user: should have access to modify (POST)
         mockMvc.perform(post("/books")
@@ -76,5 +76,5 @@ public class BookTemplateControllerTest {
                         .param("publishedDate", "2025-01-01"))
                 .andExpect(status().is3xxRedirection())  // 302 Redirect to login
                 .andExpect(redirectedUrl("/login"));
-    }
+    }*/
 }

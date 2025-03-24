@@ -13,16 +13,31 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
+/**
+ * Security configuration class that sets up Spring Security for the application.
+ * This configuration handles user authentication, authorization, and access control.
+ */
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
 
+    // The service for loading user-specific data during authentication
     private final CustomUserDetailsService userDetailsService;
 
+    /**
+     * Constructor that initializes the service for handling user authentication.
+     * @param userDetailsService the service for loading user details
+     */
     public SecurityConfig(CustomUserDetailsService userDetailsService) {
         this.userDetailsService = userDetailsService;
     }
 
+    /**
+     * Configures the security filter chain, including authentication and authorization rules.
+     * @param http the HttpSecurity object to configure security settings
+     * @return the configured SecurityFilterChain
+     * @throws Exception if there is an error in the security configuration
+     */
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
@@ -55,11 +70,21 @@ public class SecurityConfig {
         return http.build();
     }
 
+    /**
+     * Provides the authentication manager used to authenticate users.
+     * @param authConfig the configuration for authentication
+     * @return the AuthenticationManager instance
+     * @throws Exception if there is an error in the authentication configuration
+     */
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
         return authConfig.getAuthenticationManager();
     }
 
+    /**
+     * Configures the DaoAuthenticationProvider for authenticating users from the database.
+     * @return the DaoAuthenticationProvider with custom user details service and password encoder
+     */
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
@@ -68,6 +93,10 @@ public class SecurityConfig {
         return authProvider;
     }
 
+    /**
+     * Configures the password encoder used for encoding and validating passwords.
+     * @return the BCryptPasswordEncoder instance
+     */
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();

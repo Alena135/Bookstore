@@ -9,6 +9,10 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+/**
+ * Represents a genre entity with a unique name.
+ * Each genre can be associated with multiple {@link Book}s.
+ */
 @Getter
 @Setter
 @Entity
