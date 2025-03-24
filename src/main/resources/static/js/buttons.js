@@ -31,10 +31,14 @@ function editBook(bookId) {
     window.location.href = `/books-web/${bookId}/edit`;
 }
 
-function goBackToBookList() {
+function goToBookList() {
     window.location.href = '/books-web/view-all';
 }
 
 function addNewBook() {
     window.location.href = '/books-web/create';
+}
+
+function goHome() {
+    window.location.href = '/home';
 }

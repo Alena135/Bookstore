@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Bookstore Home</title>
+    <script src="/js/buttons.js" defer></script>
+</head>
+<body>
+<h2>Bookstore Inventory Management System</h2>
+
+<div>
+    <p>Welcome <span th:text="${username}">User</span>!</p>
+
+    <div th:if="${isAdmin}">
+        <h3>Admin Dashboard</h3>
+        <ul>
+            <button th:onclick="|goToBookList()|">View All Books</button>
+            <button th:onclick="|addNewBook()|">Add New Book</button>
+        </ul>
+    </div>
+
+    <div th:unless="${isAdmin}">
+        <h3>User Dashboard</h3>
+        <ul>
+            <button th:onclick="|goToBookList()|">View All Books</button>
+        </ul>
+    </div>
+</div>
+
+<form th:action="@{/logout}" method="post">
+    <button type="submit">Logout</button>
+</form>
+</body>
+</html>

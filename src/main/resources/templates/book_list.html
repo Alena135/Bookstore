@@ -42,19 +42,19 @@
     <td th:text="${book.price}">0.00</td>
     <td>
       <button th:onclick="|viewBook(${book.id})|">View</button>
-      <button th:onclick="|editBook(${book.id})|">Edit</button>
-      <button th:onclick="|deleteBook(${book.id})|">Delete</button>
+      <div th:if="${isAdmin}">
+        <button th:onclick="|editBook(${book.id})|">Edit</button>
+        <button th:onclick="|deleteBook(${book.id})|">Delete</button>
+      </div>
     </td>
   </tr>
   </tbody>
 </table>
 
-<!--<div id="paginationControls">-->
-<!--  <button id="prevBtn" th:onclick="|goToPreviousPage()|" disabled>Previous</button>-->
-<!--  <button id="nextBtn" th:onclick="|goToNextPage()|">Next</button>-->
-<!--</div>-->
-
-<button th:onclick="|addNewBook()|">Add New Book</button>
+<div th:if="${isAdmin}">
+  <button th:onclick="|addNewBook()|">Add New Book</button>
+</div>
+<button th:onclick="|goHome()|">Home</button>
 
 </body>
 </html>

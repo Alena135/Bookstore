@@ -20,9 +20,7 @@
     <li th:each="genre : ${book.genres}" th:text="${genre.name}">Genre Name</li>
 </ul>
 
-<button th:onclick="|goBackToBookList()|">Back to Book List</button>
-<button th:onclick="|editBook(${book.id})|">Edit</button>
-<button th:onclick="|deleteBook(${book.id})|">Delete</button>
+<button th:onclick="|goToBookList()|">Back to Book List</button>
 
 </body>
 </html>

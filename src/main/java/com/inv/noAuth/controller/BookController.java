@@ -5,6 +5,7 @@ import com.inv.noAuth.exception.BookAlreadyExistsException;
 import com.inv.noAuth.model.Book;
 import com.inv.noAuth.model.PagedResponse;
 import com.inv.noAuth.service.BookService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,42 +21,52 @@ public class BookController {
         this.bookService = bookService;
     }
 
+    // Get all books
     @GetMapping
     public ResponseEntity<List<Book>> getAllBooks() {
         List<Book> books = bookService.getAllBooks();
-        return ResponseEntity.ok(books);
+        return new ResponseEntity<>(books, HttpStatus.OK);
     }
 
+    // Get book by ID
     @GetMapping("/{id}")
     public ResponseEntity<Book> getBookById(@PathVariable Long id) {
-        return ResponseEntity.ok(bookService.getBookById(id));
+        Book book = bookService.getBookById(id);
+        return new ResponseEntity<>(book, HttpStatus.OK);
     }
 
+    // Create a new book
     @PostMapping
     public ResponseEntity<String> createBook(@RequestBody Book book) {
         try {
             Book createdBook = bookService.addBook(book);
-            return ResponseEntity.ok("Book added successfully with ID: " + createdBook.getId());
+            String responseMessage = "Book added successfully with ID: " + createdBook.getId();
+            return new ResponseEntity<>(responseMessage, HttpStatus.CREATED);
         } catch (BookAlreadyExistsException e) {
-            return ResponseEntity.status(422).body("Failed to add the book.");
+            String errorMessage = "Failed to add the book. Book already exists.";
+            return new ResponseEntity<>(errorMessage, HttpStatus.UNPROCESSABLE_ENTITY);
         }
     }
 
+    // Update an existing book
     @PutMapping("/{id}")
     public ResponseEntity<Book> updateBook(@PathVariable Long id, @RequestBody Book book) {
-        return ResponseEntity.ok(bookService.updateBook(id, book));
+        Book updatedBook = bookService.updateBook(id, book);
+        return new ResponseEntity<>(updatedBook, HttpStatus.OK);
     }
 
+    // Delete a book
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteBook(@PathVariable Long id) {
         bookService.deleteBook(id);
-        return ResponseEntity.noContent().build();
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
+    // Search books with pagination and sorting
     @GetMapping("/search/{searchBy}/{query}")
     public ResponseEntity<PagedResponse<Book>> searchBooks(
-            @PathVariable String query,
             @PathVariable String searchBy,
+            @PathVariable String query,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "5") int size,
             @RequestParam(defaultValue = "title") String sortBy,
@@ -64,6 +75,6 @@ public class BookController {
         PagedResponse<Book> response = bookService.searchBooks(
                 query, searchBy, page, size, sortBy, direction);
 
-        return ResponseEntity.ok(response);
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }

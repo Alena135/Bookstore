@@ -100,7 +100,8 @@ public class BookService {
     }
 
     // Generic search method that can search by different criteria
-    public PagedResponse<Book> searchBooks(String searchTerm, String searchBy, int page, int size, String sortBy, String direction) {
+    public PagedResponse<Book> searchBooks(String searchTerm, String searchBy,
+                                           int page, int size, String sortBy, String direction) {
         Sort sort = createSort(sortBy, direction);
         Pageable pageable = PageRequest.of(page, size, sort);
 
@@ -117,10 +118,8 @@ public class BookService {
                     break;
                 case "author":
                     try {
-//                        Long authorId = Long.parseLong(searchTerm);
                         bookPage = bookRepository.findByAuthorFullName(searchTerm, pageable);
                     } catch (Exception e) {
-                        // Handle case where searchTerm is not a valid author ID
                         bookPage = Page.empty(pageable);
                     }
                     break;
