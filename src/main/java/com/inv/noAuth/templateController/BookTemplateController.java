@@ -2,6 +2,7 @@ package com.inv.noAuth.templateController;
 
 import com.inv.noAuth.exception.BookNotFoundException;
 import com.inv.noAuth.model.Book;
+import com.inv.noAuth.model.PagedResponse;
 import com.inv.noAuth.repository.BookRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -52,5 +53,13 @@ public class BookTemplateController {
     public String deleteBook(@PathVariable Long id) {
         bookRepository.deleteById(id);
         return "redirect:/books/view-all"; // Redirect back to the list of books
+    }
+
+    @GetMapping("/search")
+    public String searchPage(Model model) {
+        // Add initial attributes to the model (optional, depending on whether you want to pre-fill data)
+        model.addAttribute("searchBy", "title");  // Default searchBy
+        model.addAttribute("query", "");  // Default query is empty
+        return "book_search";  // Thymeleaf template for the search page
     }
 }
