@@ -57,7 +57,7 @@ public class BookController {
             @PathVariable String query,
             @PathVariable String searchBy,
             @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size,
+            @RequestParam(defaultValue = "5") int size,
             @RequestParam(defaultValue = "title") String sortBy,
             @RequestParam(defaultValue = "ASC") String direction) {
 
