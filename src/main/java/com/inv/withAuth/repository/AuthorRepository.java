@@ -1,6 +1,6 @@
-package com.inv.noAuth.repository;
+package com.inv.withAuth.repository;
 
-import com.inv.noAuth.model.Author;
+import com.inv.withAuth.model.Author;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

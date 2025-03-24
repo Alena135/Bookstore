@@ -1,6 +1,6 @@
-package com.inv.noAuth.config;
+package com.inv.withAuth.config;
 
-import com.inv.noAuth.service.CustomUserDetailsService;
+import com.inv.withAuth.service.CustomUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;

@@ -1,4 +1,4 @@
-package com.inv.noAuth;
+package com.inv.withAuth;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

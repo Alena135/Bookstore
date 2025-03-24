@@ -1,20 +1,13 @@
-package com.inv.noAuth.controller;
+package com.inv.withAuth.controller;
 
-import com.inv.noAuth.exception.BookNotFoundException;
-import com.inv.noAuth.model.Book;
-import com.inv.noAuth.model.PagedResponse;
-import com.inv.noAuth.repository.BookRepository;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
+import com.inv.withAuth.exception.BookNotFoundException;
+import com.inv.withAuth.model.Book;
+import com.inv.withAuth.repository.BookRepository;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 /**
  * Controller responsible for handling HTTP requests related to book management in the web application.

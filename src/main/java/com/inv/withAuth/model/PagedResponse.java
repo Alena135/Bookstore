@@ -1,4 +1,4 @@
-package com.inv.noAuth.model;
+package com.inv.withAuth.model;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -1,12 +1,11 @@
-package com.inv.noAuth.repository;
+package com.inv.withAuth.repository;
 
-import com.inv.noAuth.model.Author;
-import com.inv.noAuth.model.Book;
+import com.inv.withAuth.model.Author;
+import com.inv.withAuth.model.Book;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 /**

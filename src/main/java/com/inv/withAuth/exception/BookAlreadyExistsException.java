@@ -1,4 +1,4 @@
-package com.inv.noAuth.exception;
+package com.inv.withAuth.exception;
 
 public class BookAlreadyExistsException extends RuntimeException{
     public BookAlreadyExistsException(String title, String authorName, String authorSurname) {

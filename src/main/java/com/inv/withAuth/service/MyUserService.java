@@ -1,13 +1,11 @@
-package com.inv.noAuth.service;
+package com.inv.withAuth.service;
 
-import com.inv.noAuth.model.MyUser;
-import com.inv.noAuth.repository.MyUserRepository;
+import com.inv.withAuth.model.MyUser;
+import com.inv.withAuth.repository.MyUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Optional;
 
 /**
  * Service class for managing user-related operations, including user registration.

@@ -1,8 +1,8 @@
-package com.inv.noAuth.controller;
+package com.inv.withAuth.controller;
 
-import com.inv.noAuth.model.MyUser;
-import com.inv.noAuth.repository.MyUserRepository;
-import com.inv.noAuth.service.MyUserService;
+import com.inv.withAuth.model.MyUser;
+import com.inv.withAuth.repository.MyUserRepository;
+import com.inv.withAuth.service.MyUserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;

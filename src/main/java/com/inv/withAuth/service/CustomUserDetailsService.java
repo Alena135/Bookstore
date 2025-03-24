@@ -1,15 +1,12 @@
-package com.inv.noAuth.service;
+package com.inv.withAuth.service;
 
 
-import com.inv.noAuth.model.MyUser;
-import com.inv.noAuth.repository.MyUserRepository;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import com.inv.withAuth.model.MyUser;
+import com.inv.withAuth.repository.MyUserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-
-import java.util.Collections;
 
 /**
  * This service implements Spring Security's {@link UserDetailsService} interface to provide

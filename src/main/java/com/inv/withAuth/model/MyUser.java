@@ -1,4 +1,4 @@
-package com.inv.noAuth.model;
+package com.inv.withAuth.model;
 
 import jakarta.persistence.*;
 import lombok.Getter;

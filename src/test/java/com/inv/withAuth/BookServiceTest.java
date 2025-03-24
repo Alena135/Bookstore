@@ -1,15 +1,15 @@
-package com.inv.noAuth;
+package com.inv.withAuth;
 import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-import com.inv.noAuth.model.Author;
-import com.inv.noAuth.model.Book;
-import com.inv.noAuth.model.Genre;
-import com.inv.noAuth.model.PagedResponse;
-import com.inv.noAuth.repository.AuthorRepository;
-import com.inv.noAuth.repository.BookRepository;
-import com.inv.noAuth.repository.GenreRepository;
-import com.inv.noAuth.service.BookService;
+import com.inv.withAuth.model.Author;
+import com.inv.withAuth.model.Book;
+import com.inv.withAuth.model.Genre;
+import com.inv.withAuth.model.PagedResponse;
+import com.inv.withAuth.repository.AuthorRepository;
+import com.inv.withAuth.repository.BookRepository;
+import com.inv.withAuth.repository.GenreRepository;
+import com.inv.withAuth.service.BookService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

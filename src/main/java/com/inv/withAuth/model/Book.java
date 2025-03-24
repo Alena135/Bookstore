@@ -1,10 +1,9 @@
-package com.inv.noAuth.model;
+package com.inv.withAuth.model;
 
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;

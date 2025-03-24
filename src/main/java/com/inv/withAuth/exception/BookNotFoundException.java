@@ -1,4 +1,4 @@
-package com.inv.noAuth.exception;
+package com.inv.withAuth.exception;
 
 public class BookNotFoundException extends RuntimeException {
     public BookNotFoundException(Long id) {

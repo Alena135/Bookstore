@@ -1,14 +1,14 @@
-package com.inv.noAuth.service;
+package com.inv.withAuth.service;
 
-import com.inv.noAuth.exception.BookAlreadyExistsException;
-import com.inv.noAuth.exception.BookNotFoundException;
-import com.inv.noAuth.model.Author;
-import com.inv.noAuth.model.Book;
-import com.inv.noAuth.model.Genre;
-import com.inv.noAuth.model.PagedResponse;
-import com.inv.noAuth.repository.AuthorRepository;
-import com.inv.noAuth.repository.BookRepository;
-import com.inv.noAuth.repository.GenreRepository;
+import com.inv.withAuth.exception.BookAlreadyExistsException;
+import com.inv.withAuth.exception.BookNotFoundException;
+import com.inv.withAuth.model.Author;
+import com.inv.withAuth.model.Book;
+import com.inv.withAuth.model.Genre;
+import com.inv.withAuth.model.PagedResponse;
+import com.inv.withAuth.repository.AuthorRepository;
+import com.inv.withAuth.repository.BookRepository;
+import com.inv.withAuth.repository.GenreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
