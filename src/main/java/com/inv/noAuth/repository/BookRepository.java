@@ -12,9 +12,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface BookRepository extends JpaRepository<Book, Long> {
     Page<Book> findByTitleContaining(String title, Pageable pageable);
-
-//    Page<Book> findByAuthorId(Long id, Pageable pageable);
-
     Page<Book> findByAuthorFullName(String fullName, Pageable pageable);
 
     @Query("SELECT b FROM Book b JOIN b.genres g WHERE g.name = :genreName")

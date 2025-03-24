@@ -29,6 +29,12 @@ public class BookService {
     @Autowired
     private AuthorRepository authorRepository;
 
+    public BookService(BookRepository bookRepository, AuthorRepository authorRepository, GenreRepository genreRepository) {
+        this.bookRepository = bookRepository;
+        this.authorRepository = authorRepository;
+        this.genreRepository = genreRepository;
+    }
+
     public Book addBook(Book book) {
         if (book.getAuthor() != null) {
             book.setAuthor(findOrCreateAuthor(book.getAuthor()));

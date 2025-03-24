@@ -24,4 +24,8 @@ public class PagedResponse<T> {
         this.totalPages = totalPages;
         this.last = last;
     }
+
+    public PagedResponse() {
+
+    }
 }

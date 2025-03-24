@@ -37,6 +37,11 @@ public class Author {
 
     public Author() {}
 
+    public Author(String name, String surname) {
+        this.name = name;
+        this.surname = surname;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

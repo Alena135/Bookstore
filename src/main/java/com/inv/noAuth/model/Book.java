@@ -25,7 +25,7 @@ public class Book {
     private String title;
 
     @Column(name = "price")
-    private BigDecimal price;
+    private Long price;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "author_id")
@@ -40,6 +40,23 @@ public class Book {
     private Set<Genre> genres = new HashSet<>(); // Each book can have multiple genres
 
     public Book() {}
+
+    public Book(String title, Long price, String authorName, String authorSurname, String genre) {
+        this.title = title;
+        this.price = price;
+        this.author = new Author(authorName, authorSurname);
+        this.genres = new HashSet<>();
+        this.genres.add(new Genre(genre));
+    }
+
+    public Book(Long id, String title, Long price, String authorName, String authorSurname, String genre) {
+        this.id = id;
+        this.title = title;
+        this.price = price;
+        this.author = new Author(authorName, authorSurname);
+        this.genres = new HashSet<>();
+        this.genres.add(new Genre(genre));
+    }
 
     @Override
     public boolean equals(Object o) {

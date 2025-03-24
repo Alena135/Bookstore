@@ -1,4 +1,4 @@
-package com.inv.noAuth.serviceTest;
+package com.inv.noAuth;
 import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.*;
 
