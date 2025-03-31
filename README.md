@@ -23,7 +23,6 @@ The system differentiates between **Admin** and **Regular User** roles:
 - **Database**: PostgreSQL (using Docker with docker-compose.yml)
 - **Build Tool**: Gradle
 - **API Communication**: REST (GET, POST, PUT, DELETE)
-- **Documentation**: Swagger UI
 
 ## Prerequisites
 
