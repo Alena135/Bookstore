@@ -44,12 +44,18 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable()) // Disable CSRF for simplicity
                 .authorizeHttpRequests(auth -> auth
                                 .requestMatchers("/login", "/register", "/css/**", "/js/**").permitAll() // Public resources
-                                .requestMatchers("/books").hasAnyRole("USER", "ADMIN") // Both roles can view books
-                                .requestMatchers("/books/search").hasAnyRole("USER", "ADMIN") // Allow search for both roles
-                                .requestMatchers("/books/create", "/books/*/edit", "/books/*/delete").hasRole("ADMIN") // Only admin can modify
+
+                                .requestMatchers(HttpMethod.GET, "/books/**").hasAnyRole("USER", "ADMIN")
+                                .requestMatchers("/books/search/**").hasAnyRole("USER", "ADMIN")
+                                .requestMatchers(HttpMethod.GET, "/books-web/view-all").hasAnyRole("USER", "ADMIN")
+                                .requestMatchers(HttpMethod.GET, "/books-web/{id}").hasAnyRole("USER", "ADMIN")
+                                .requestMatchers("/books-web/search").hasAnyRole("USER", "ADMIN")
+
                                 .requestMatchers(HttpMethod.POST, "/books").hasRole("ADMIN") // Only admin can create
                                 .requestMatchers(HttpMethod.PUT, "/books/**").hasRole("ADMIN") // Only admin can update
                                 .requestMatchers(HttpMethod.DELETE, "/books/**").hasRole("ADMIN") // Only admin can delete
+                                .requestMatchers("/books-web/create", "/books-web/**/edit", "/books-web/**/delete").hasRole("ADMIN") // Only admin can modify
+
                                 .anyRequest().authenticated() // Any other request needs authentication
                 )
                 .formLogin(form -> form

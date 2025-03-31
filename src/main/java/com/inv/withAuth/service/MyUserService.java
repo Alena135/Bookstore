@@ -39,10 +39,14 @@ public class MyUserService {
     public MyUser registerUser(MyUser user, boolean isAdmin) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setRole(isAdmin ? MyUser.Role.ROLE_ADMIN : MyUser.Role.ROLE_USER);
+
         MyUser savedUser = myUserRepository.save(user);
+
+        // add instead log.info(...)
         System.out.println("User saved with ID: " + savedUser.getId() +
                 ", Username: " + savedUser.getUsername() +
                 ", Role: " + savedUser.getRole());
+
         return savedUser;
     }
 }
